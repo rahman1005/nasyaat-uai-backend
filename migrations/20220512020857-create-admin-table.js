@@ -10,13 +10,21 @@ module.exports = {
         autoIncrement:true,
         allowNull:false
       },
+      name:{
+        type: Sequelize.STRING,
+        allowNull:true
+      },
       username:{
         type: Sequelize.STRING,
         allowNull:true
       },
       password:{
-        type: Sequelize. STRING,
+        type: Sequelize.STRING,
         allowNull:false
+      },
+      refresh_token:{
+        type: Sequelize.TEXT,
+        allowNull:true
       },
       createdAt:{
         type: Sequelize.DATE,

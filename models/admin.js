@@ -6,13 +6,21 @@ module.exports = (sequelize, DataTypes)=>{
             autoIncrement:true,
             allowNull:false
           },
+          name:{
+            type: DataTypes.STRING,
+            allowNull:true
+          },
         username:{
             type: DataTypes.STRING,
             allowNull:true
           },
         password:{
-            type: DataTypes. STRING,
+            type: DataTypes.STRING,
             allowNull:false
+          },
+          refresh_token:{
+            type: DataTypes.TEXT,
+            allowNull:true
           },
         createdAt:{
             type: DataTypes.DATE,

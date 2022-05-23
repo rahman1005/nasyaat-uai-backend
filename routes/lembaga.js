@@ -5,7 +5,10 @@ const Validator = require('fastest-validator');
 const {lembaga} = require('../models');
 const v = new Validator();
 
-
+router.get('/', async(req,res)=>{
+    const Lembaga = await lembaga.findAll();
+    return res.json(Lembaga);
+})
 router.post('/', async(req, res) => {
     const schema ={
         lembagaName: 'string',
