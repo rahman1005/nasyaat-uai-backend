@@ -14,7 +14,7 @@ var eventsORMAWA = require('./routes/EventORMAWA');
 var eventsUKKM = require('./routes/eventUKKM');
 var eventsUAI = require('./routes/eventUAI');
 var category = require('./routes/category');
-// var admin = require('./routes/admin');
+var admin = require('./routes/admin');
 // var login = require('./routes/login')
 var app = express();
 
@@ -35,7 +35,7 @@ app.use('/eventormawa', eventsORMAWA);
 app.use('/eventukkm',eventsUKKM);
 app.use('/eventuai',eventsUAI);
 app.use('/category',category);
-// app.use('/admin',admin);
+app.use('/admin',admin);
 // app.use('/login', login);
 
 app.use(cors());

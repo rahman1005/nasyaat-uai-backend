@@ -1,31 +1,31 @@
-// var express = require('express');
-// var router = express.Router();
-// const Validator = require('fastest-validator');
-// const model =require('../models/index')
-// const {admin} = require('../models');
-// const v = new Validator();
-// const bcrypt =require('bcrypt');
-// const jwt = require ('jsonwebtoken');
+var express = require('express');
+var router = express.Router();
+const Validator = require('fastest-validator');
+const model =require('../models/index')
+const {admin} = require('../models');
+const v = new Validator();
+const bcrypt =require('bcrypt');
+const jwt = require ('jsonwebtoken');
 
-// router.get('/', async(req,res)=>{
-//     const Admin = await admin.findAll();
-//     res.json(Admin);
-// });
+router.get('/', async(req,res)=>{
+    const Admin = await admin.findAll();
+    res.json(Admin);
+});
 
 
-// router.post('/', async(req, res)=>{
-//     const {name, username, password, confPassword}=req.body;
-//     if(password !=confPassword) return res.status(400).json({msg:"password dan confirmasi Password tidak sama"});
-//     const salt =await bcrypt.genSalt();
-//     const hashPassword = await bcrypt.hash(password,salt);
+router.post('/', async(req, res)=>{
+    const {name, username, password, confPassword}=req.body;
+    if(password !=confPassword) return res.status(400).json({msg:"password dan confirmasi Password tidak sama"});
+    const salt =await bcrypt.genSalt();
+    const hashPassword = await bcrypt.hash(password,salt);
 
-//     const Admin = await admin.create({
-//         name: name,
-//         username: username,
-//         password, hashPassword
-//     });
-//     res.json(Admin); 
-// })
+    const Admin = await admin.create({
+        name: name,
+        username: username,
+        password, hashPassword
+    });
+    res.json(Admin); 
+})
 
 // router.post('/', async(req, res)=>{
 //     const Admin = await admin.findAll({
@@ -56,4 +56,4 @@
 //     res.json((accessToken));
 // })
 
-// module.exports=router;
+module.exports=router;

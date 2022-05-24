@@ -33,7 +33,7 @@ router.post('/', upload.single('Image'), async(req, res) => {
        
     // }
 
-    // const validate = v.validate(req.body, schema);
+    // const validate = v.validate(req.body, res.file);
 
     // if(validate.length){
     //     return res
@@ -63,7 +63,8 @@ router.get('/:eventId', async(req,res)=>{
     const Event = await event.findByPk(id);
     return res.json(Event);
 })
-router.put('/:eventId', async(req, res) =>{
+router.put('/:eventId', upload.single('Image'), async(req, res) =>{
+    
     const id = req.params.eventId;
     let Event = await event.findByPk(id);
 
@@ -71,26 +72,39 @@ router.put('/:eventId', async(req, res) =>{
         return res.json({mesage:"events not Found"});
     }
 
-    const schema ={
-        nameEvent: 'string|optional',
-        // waktu: 'string|optional',
-        link_pendaftaran:'string|optional',
-        link_instagram:'string|optional',
-        tempat:'string|optional',
-        deskripsi:'string|optional',
-        Image:'string|optional',
-        lembagaId:'number|optional',
-        categoryId:'number|optional',
-    }
+    // const schema ={
+    //     lembagaName:'string|optional',
+    //     nameEvent: 'string|optional',
+    //     waktu: 'string|optional',
+    //     link_pendaftaran:'string|optional',
+    //     link_instagram:'string|optional',
+    //     tempat:'string|optional',
+    //     tanggal:'string|optional',
+    //     deskripsi:'string|optional',
+    //     lembagaId:'number|optional',
+    //     categoryId:'number|optional',
+    //     Image:'file|optional'
+    // }
 
-    const validate = v.validate(req.body, schema);
+    // const validate = v.validate(req.body,req.file, schema);
 
-    if(validate.length){
-        return res
-        .status(400)
-        .json(validate);
-    }
-    Event= await Event.update(req.body);
+    // if(validate.length){
+    //     return res
+    //     .status(400)
+    //     .json(validate);
+    // }
+    Event= await Event.update({
+        lembagaName:req.body.lembagaName,
+        nameEvent:req.body.nameEvent,
+        link_pendaftaran:req.body.link_pendaftaran,
+        link_instagram:req.body.link_instagram,
+        tanggal:req.body.tanggal,
+        waktu:req.body.waktu,
+        tempat:req.body.tempat,
+        deskripsi:req.body.deskripsi,
+        Image:req.file.path, 
+    });
+
     res.json(Event);
 });
 
